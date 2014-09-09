@@ -1,13 +1,12 @@
-# Tock #
+# iTick #
 
 A javscript timer/countdown clock. 
 
-[View Demo](http://deviouschimp.co.uk/misc/tock)
+[View Demo](http://wpsmith.github.io/iTick)
 
 Based on an idea by James Edwards:
 http://sitepoint.com/creating-accurate-timers-in-javascript/
 
- > Note: I have renamed the repo from Tock to tock. Sorry for any inconvenience.
 
 
 # Readme Contents #
@@ -39,7 +38,7 @@ http://sitepoint.com/creating-accurate-timers-in-javascript/
 
 # How do I use it? #
 
-Tock.js works behind the scenes - it doesn't alter anything on screen - so here I'll show how to make a stop-watch that updates in real-time on screen.
+iTick.js works behind the scenes - it doesn't alter anything on screen - so here I'll show how to make a stop-watch that updates in real-time on screen.
 
 ### 1) Make some html to show the clock. ###
 
@@ -48,17 +47,17 @@ Tock.js works behind the scenes - it doesn't alter anything on screen - so here 
       <input id="clock" value="10:00">
       <script> // javascripts... </script>
 
-### 2) Instantiate a Tock ###
+### 2) Instantiate a iTick ###
 
-Now we write some Javascript. First we'll create a new instance of Tock and assign it to a variable called *timer*.
+Now we write some Javascript. First we'll create a new instance of iTick and assign it to a variable called *iticker*.
 
-    var timer = new Tock();
+    var iticker = new ITick();
 
 This will give you a clock that will count up from 00:00 when the start() method is called. The stop() and reset() methods can also be used.
 
 For more control we can pass in some options. *Note that all options are... optional.*
 
-    var timer = new Tock({
+    var iticker = new ITick({
       countdown: true,
       interval: 10,
       callback: someCallbackFunction,
@@ -72,19 +71,19 @@ For more control we can pass in some options. *Note that all options are... opti
 You'll need some way of controlling your clock. Let's set up some buttons *(using jQuery for example)*.
 
     $('#start').on('click', function() {
-	    timer.start($('#clock').val());
+	    iticker.start($('#clock').val());
 	});
 
 Note that we get the time from the clock input and pass it to the start function as the start time.
 
     $('#stop').on('click', function() {
-	    timer.stop();
+	    iticker.stop();
 	});
 
 If you're not using a countdown clock you can make a reset button, too.
 
     $('#reset').on('click', function() {
-	    timer.reset();
+	    iticker.reset();
 	});
 
 You could also create a reset button if you *are* using a countdown clock, but that's beyond the scope of this walkthrough. The tools are there. Do with them what you can. After this next section you're on your own. Good luck. We're all counting on you.
@@ -100,20 +99,25 @@ You could also create a reset button if you *are* using a countdown clock, but t
 
 # Callbacks #
 
-The callback option is a function that will be called once every `interval` milliseconds.
+The callback options are functions that are called on specific occasions and is passed as an object.
+
+  * onTick: a function that will be called once every `interval` milliseconds.
+  * onStatusChange: a function that will be called every status change.
+  * onStart: a function that is called on the start of a timer.
+  * onEnd: a function that is called on the end/stop of a timer.
+  * onPause: a function that is called every time a timer is paused.
+ is 
 
 Here we'll use the `lap()` method to get the current clock time (in milliseconds). We'll then pass that through `msToTime()` to format it nicely before displaying it in the `input` field.
 
-    callback: function () {
-        var current_time = timer.msToTime(timer.lap());
-        $('#clock').val(current_time);
-    }
-
-As we are have set `countdown` to `true` we can also pass in a function to call once the countdown reaches zero.
-
-    complete: function () {
+  callbacks = {
+    onTick: function () {
+        $('#clock').val(iticker.lap('pretty'));
+    },
+    onEnd: function () {
         alert("Time's up!");
     }
+  }
 
 
 # Methods #
@@ -130,7 +134,7 @@ As we are have set `countdown` to `true` we can also pass in a function to call 
  * lap()
    * Returns elapsed time in milliseconds.
  * msToTime(ms)
-   * Note: this is rudimentary - won't handle > 1 hour
+   * return HH:MM:SS.MS (e.g., 00:05:31.456)
  * timeToMS(time)
    Time should be a string of form:
    * "MM:SS"

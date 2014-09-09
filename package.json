@@ -2,7 +2,7 @@
   "name": "iTick",
   "version": "1.0.0",
   "description": "Another JavaScript Stopwatch",
-  "main": "itick.js",
+  "main": "dist/itick.min.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/wpsmith/itick.git"
@@ -16,9 +16,10 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/wpsmith/itick/issues"
-  }, 
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
+    "grunt-contrib-copy": "^0.5.0",
     "grunt-contrib-jshint": "~0.10.0",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
