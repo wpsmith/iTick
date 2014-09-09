@@ -1,0 +1,15 @@
+{
+	"name": "iTick",
+	"keywords": ["stopwatch","timer"]
+	"version": "1.0.0",
+	"main": ["./dist/tick.min.js", "./src/tick.js"],
+	"ignore": [
+		"./examples/**",
+		"./examples/*.*",
+		".jshintrc",
+		"**/.md",
+		"**/.html",
+		"**/.*",
+		"**/.json"
+	]
+}

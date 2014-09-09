@@ -1,0 +1,27 @@
+{
+    "boss": true, // Allows for (var i = 0, person; person = people[i]; i++) {}
+    "curly": true, // Requires you to always put curly braces around blocks in loops and conditionals. 
+    "eqeqeq": true, // Prohibits the use of == and != in favor of === and !==
+    "eqnull": false, //  Suppresses warnings about == null comparisons.
+    "es3": true, // Code needs to adhere to ECMAScript 3 specification
+    "immed": true, // Prohibits the use of immediate function invocations without wrapping them in parentheses
+    "latedef": true, // Prohibits the use of a variable before it was defined.
+    "newcap": true, // Requires you to capitalize names of constructor functions.
+    "noarg": true, // Prohibits the use of arguments.caller and arguments.callee
+    "quotmark": "single", // Enforces the consistency of quotation marks used throughout your code
+    "sub": true, // Suppresses warnings about using [] notation when it can be expressed in dot notation: person['name'] vs. person.name
+    "strict": true, // Requires all functions to run in ECMAScript 5's strict mode
+    "undef": true, // Prohibits the use of explicitly undeclared variables. 
+    "unused": true, // Warns when a variable is defined and never used
+
+    "trailing": true, // No idea what this is...
+
+    "browser": true, // defines globals exposed by modern browsers: all the way from good old document and navigator to the HTML5 FileReader and other new developments in the browser world. doesn't expose variables like alert or console
+    "devel": true, // defines globals that are usually used for logging poor-man's debugging: console, alert, etc
+
+    "globals": {
+        "exports": true,
+        "module": false
+    }
+}
+

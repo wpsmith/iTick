@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <title>iTick: Stopwatch</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <script src="tick1.js"></script>
+    <style>
+        #laptimes {
+            border: 1px solid #ddd;
+            padding: 10px;
+            width: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+           
+            var o = {
+                onTick: function () {
+                    $('#clockface').val(iticker.lap('pretty'));
+                },
+                onStart: function() {}
+            };
+            window.iticker = new iTick(o);
+
+            $('#start').on('click', function () {
+                iticker.start();
+            });
+
+            $('#lap').on('click', function () {
+                $('#laptimes').append(iticker.lap('pretty') + '<br>');
+            });
+
+            $('#pause').on('click', function () {
+                iticker.pause();
+            });
+
+            $('#stop').on('click', function () {
+                iticker.stop();
+            });
+
+            $('#reset').on('click', function () {
+                iticker.reset();
+                $('#clockface').val('');
+                $('#laptimes').html('');
+            });
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>iTick</h1>
+    <p>
+        by <a href="https://github.com/wpsmith/itick">Travis Smith</a>
+    </p>
+
+    <section>
+        <h2>Timer</h2>
+        <p>
+            <button id="start">Start</button>
+            <button id="lap">Lap</button>
+            <button id="pause">Pause</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+        </p>
+        <p>
+            <input id="clockface" placeholder="00:00:00">
+        </p>
+        <p>
+            <div id="laptimes"></div>
+        </p>
+    </section>
+
+</body>
+</html>
